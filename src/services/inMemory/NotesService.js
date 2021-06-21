@@ -6,6 +6,7 @@ class NotesService {
         this._notes = [];
     };
 
+    // create (membuat note)
     addNote({ title, body, tags }) {
         const id = nanoid(16);
         const createdAt = new Date().toISOString();
@@ -17,7 +18,7 @@ class NotesService {
 
         this._notes.push(newNote);
 
-        const isSucces = this._notes.filter((note) => note.id === id).length > 0;
+        const isSuccess = this._notes.filter((note) => note.id === id).length > 0;
 
         if (isSuccess) {
             throw new Error('Catatan gagal ditambahkan');
@@ -26,10 +27,12 @@ class NotesService {
         return id;
     };
 
+    // Red (membaca seluruh note yang disimpan)
     getNotes() {
         return this._notes;
     };
 
+    // membaca note yang disimpan berdasarkan id
     getNoteById(id) {
         const note = this._notes.filter((n) => n.id === id)[0];
         if (!note) {
@@ -39,6 +42,7 @@ class NotesService {
         return note;
     };
 
+    //update (mengubah data note yang disimpan)
     editNoteById(id, { title, body, tags }) {
         const index = this._notes.findIndex((note) => note.id === id);
         
@@ -54,8 +58,10 @@ class NotesService {
         tags,
         body,
         updatedAt,
-    };
+        };
+    }
 
+    //Delete (menghapus note berdasarkan id)
     deleteNoteById(id) {
         const index = this._notes.findIndex((note) => note.id === id);
 
