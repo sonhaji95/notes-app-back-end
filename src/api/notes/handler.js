@@ -1,13 +1,13 @@
-const ClientError = require("../../exceptions/ClientError");
+const ClientError = require('../../exceptions/ClientError');
 
 class NotesHandler {
-    constructor (service, validator) {
-        this._service = service; //_service sebagai lingkup privat secara konvensi
+    constructor(service, validator) {
+        this._service = service; 
         this._validator = validator;
 
         //bind member dari fungsi Function.prototype.bind
-        /*berfungsi untuk mengikat implementasi function agar tetap memiliki konteks sesuai nilai yang ditetapkan 
-        pada argumen yang diberikan pada fungsi bind, agar keyword this tetap bernilai instance */
+        //berfungsi untuk mengikat implementasi function agar tetap memiliki konteks sesuai nilai yang ditetapkan 
+        //pada argumen yang diberikan pada fungsi bind, agar keyword this tetap bernilai instance 
         this.postNoteHandler = this.postNoteHandler.bind(this);
         this.getNotesHandler = this.getNotesHandler.bind(this);
         this.getNoteByIdHandler = this.getNoteByIdHandler.bind(this);
@@ -37,8 +37,7 @@ class NotesHandler {
         const response = h.response({
             status: 'fail',
             message: error.message,
-        });
-
+        });      
         response.code(error.statusCode);
         return response;
         }
@@ -160,6 +159,7 @@ class NotesHandler {
         return response;
         }
     }
+
 }
 
 
