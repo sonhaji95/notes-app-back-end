@@ -38,7 +38,7 @@ constructor() {
      //function getNoteById
      async getNoteById(id) {
          const query = {
-             text: 'SEKECT * FROM notes WHERE id = $1',
+             text: 'SELECT * FROM notes WHERE id = $1',
              values: [id],
          };
          const result = await this._pool.query(query);
@@ -54,7 +54,7 @@ constructor() {
          const updatedAt = new Date().toISOString();
          const query = {
              text: 'UPDATE notes SET title = $1, body = $2, tags = $3, updated_at = $4 WHERE id = $5 RETURNING id',
-             values: [title, body, tags,  updatedAt. id],
+             values: [title, body, tags,  updatedAt, id],
          };
 
          const result = await this._pool.query(query);
